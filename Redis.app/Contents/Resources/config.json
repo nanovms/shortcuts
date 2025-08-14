@@ -1,0 +1,6 @@
+{
+  "CloudConfig": {
+    "BucketName": "nanos-test",
+    "Zone": "us-west-1"
+  }
+}

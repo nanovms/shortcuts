@@ -1,0 +1,14 @@
+#!/bin/sh
+{
+echo "start";
+
+echo $HOME;
+
+SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
+
+$HOME/.ops/bin/ops image create --package eyberg/mysql:5.7.29 -c "$SCRIPT_DIR/../Resources/config.json" -t aws --arch=amd64
+
+$HOME/.ops/bin/ops instance create mysqld-image -p 3306 -c "$SCRIPT_DIR/../Resources/config.json" -t aws
+
+echo "stop";
+} 2>&1 | tee -a /tmp/nanos-mysql.log

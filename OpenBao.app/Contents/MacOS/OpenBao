@@ -1,0 +1,14 @@
+#!/bin/sh
+{
+echo "start";
+
+echo $HOME;
+
+SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
+
+$HOME/.ops/bin/ops image create --package eyberg/openbao:2.3.1 -c "$SCRIPT_DIR/../Resources/config.json" -t aws --arch=amd64
+
+$HOME/.ops/bin/ops instance create bao-image -p 8200 -c "$SCRIPT_DIR/../Resources/config.json" -t aws
+
+echo "stop";
+} 2>&1 | tee -a /tmp/nanos-openbao.log

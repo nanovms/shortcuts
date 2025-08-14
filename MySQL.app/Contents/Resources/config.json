@@ -1,0 +1,7 @@
+{
+  "BaseVolumeSz": "200m",
+  "CloudConfig": {
+    "BucketName": "nanos-test",
+    "Zone": "us-west-1"
+  }
+}
